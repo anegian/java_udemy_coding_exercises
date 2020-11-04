@@ -7,5 +7,7 @@ public class Main {
 
        boolean isteen = TeenNumberChecker.isTeen(18);
         System.out.println(isteen);
+
+
     }
 }
