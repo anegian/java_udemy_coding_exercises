@@ -1,4 +1,4 @@
-package NumberPalindrome;
+package NumberPalindromeByReversing;
 
 public class NumberPalindrome {
 
