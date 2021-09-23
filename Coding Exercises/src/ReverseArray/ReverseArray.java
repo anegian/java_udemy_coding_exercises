@@ -4,32 +4,47 @@ import java.util.*;
 
 public class ReverseArray {
 
-    Scanner scanner=new Scanner(System.in);
+    private Scanner scanner=new Scanner(System.in);
 
-    private int readInteger() {
-        System.out.println("How many integers will you add in your array?");
-        int input = 0;
+    public void runProcess(){
 
-            try {
-                input = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Only digits allowed");
-            }
-        return input;
+        do {
+            System.out.println("How many integers will you add in your array?");
+            reverseArray(getArray(validateInput()));
+        }while (restartOrExit());
+        scanner.close();
+    }
+    private int validateInput() {
+
+        while (!scanner.hasNextInt()){
+            System.out.println("This in not valid. Enter an integer.");
+            scanner.next();
+        }
+        return scanner.nextInt();
     }
     private int[] getArray(int size){
 
         int[] array=new int[size];
-        System.out.println("Please enter " + size + " integers!");
 
-        for(int i=0; i<array.length; i++){
-            array[i]= scanner.nextInt();
-        }
+                System.out.println("Please enter " + size + " integers!");
+
+            try{
+                for (int i = 0; i < array.length; i++) {
+                    while (!scanner.hasNextInt()){
+                        System.out.println("This in not valid. Enter an integer.");
+                        scanner.next();
+                    }
+                    array[i] = scanner.nextInt();
+                }
+            }catch(NoSuchElementException e){
+                System.out.println("This is not an integer");
+                scanner.next();
+            }
         return array;
     }
-    private void reverse(int[] array) {
+    private void reverseArray(int[] array) {
 
-        System.out.println("The array given is: " + Arrays.toString(array));
+        System.out.println("The Array given is: " + Arrays.toString(array));
         int[] reversedArray = new int[array.length];
         int j= array.length-1;
 
@@ -37,9 +52,19 @@ public class ReverseArray {
                 reversedArray[j] = array[i];
                 j--;
         }
-        System.out.println("The reversed array is: " + Arrays.toString(reversedArray));
+        System.out.println("The Reversed Array is: " + Arrays.toString(reversedArray));
     }
-    public void runProcess(){
-        reverse( getArray (readInteger() ) );
+    private boolean restartOrExit(){
+        System.out.println("Do you want to restart? -> Press Y\nDo you wish to exit the program? -> Press anything else.");
+        String answer= scanner.next();
+
+        if (answer.equalsIgnoreCase("Y")) {
+            return true;
+        }else {
+            System.out.println(" 3...");
+            System.out.println(" 2...");
+            System.out.println(" 1...\n Exiting program...");
+            return false;
+        }
     }
 }
