@@ -1,5 +1,7 @@
 package ReverseArray;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class ReverseArray {
@@ -22,7 +24,7 @@ public class ReverseArray {
         }
         return scanner.nextInt();
     }
-    private int[] getArray(int size){
+    private int @NotNull [] getArray(int size){
 
         int[] array=new int[size];
 
@@ -55,7 +57,7 @@ public class ReverseArray {
         System.out.println("The Reversed Array is: " + Arrays.toString(reversedArray));
     }
     private boolean restartOrExit(){
-        System.out.println("Do you want to restart? -> Press Y\nDo you wish to exit the program? -> Press anything else.");
+        System.out.println("Do you want to restart? \n\t-> Press Y\nDo you wish to exit the program? \n\t-> Press anything else.");
         String answer= scanner.next();
 
         if (answer.equalsIgnoreCase("Y")) {
