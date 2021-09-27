@@ -3,24 +3,8 @@ package linked_List_Iterator.Exercise;
 import java.util.*;
 
 public class PlacesToVisit {
-    Scanner scanner = new Scanner(System.in);
-    LinkedList<String> placesToVisit = new LinkedList<>();
-    LinkedList<String> citiesList = new LinkedList<>();
 
-    //    private LinkedList<String> getInitiallySavedList() {
-//        placesToVisit.add("Volos");
-//        placesToVisit.add("Athens");
-//        placesToVisit.add("Thessaloniki");
-//        placesToVisit.add("Ioannina");
-//        placesToVisit.add("Patra");
-//        placesToVisit.add("Nafplio");
-//        placesToVisit.add("Leukada");
-//        placesToVisit.add("Serres");
-//
-//        Collections.sort(placesToVisit);
-//
-//        return placesToVisit;
-//    }
+    LinkedList<String> citiesList = new LinkedList<>();
 
     private void printList() {
 
@@ -33,7 +17,7 @@ public class PlacesToVisit {
         System.out.println("=========================");
     }
 
-    private boolean addInOrder(LinkedList<String> linkedList, String newCity) {
+    public boolean addInOrder(LinkedList<String> linkedList, String newCity) {
 
         ListIterator<String> stringListIterator = linkedList.listIterator();
 
@@ -58,24 +42,17 @@ public class PlacesToVisit {
         return true;
     }
 
-    public LinkedList<String> getCitiesList() {
-        return citiesList;
-    }
-
     public void visit() {
 
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
-        boolean goingForward = true;
-        ListIterator<String> listIterator;
-
         printMenu();
+        int i = 0;
+        int y = -1;
 
         while (!quit) {
-
             int action = scanner.nextInt();
             scanner.nextLine();
-            listIterator = this.citiesList.listIterator();
             switch (action) {
 
                 case 0:
@@ -84,33 +61,30 @@ public class PlacesToVisit {
                     break;
 
                 case 1:
-
-                    if(!goingForward) {
-                        if(listIterator.hasNext()) {
-                            listIterator.next();
-                        }
-                        goingForward = true;
+                    if (this.citiesList.isEmpty()) {
+                        System.out.println("Reached the end of the list");
+                        break;
                     }
-                        if (listIterator.hasNext()) {
-                            System.out.println("Now visiting " + listIterator.next());
-                        } else {
-                            System.out.println("Reached the end of the list");
-                            goingForward = false;
-                        }
+                    if (i < this.citiesList.size() & i >= 0) {
+                        System.out.println("Now visiting " + this.citiesList.get(i));
+                        i++;
+                        y++;
+                    } else {
+                        System.out.println("Reached the end of the list: " + this.citiesList.get(i - 1));
+                    }
                     break;
 
                 case 2:
-                    if (goingForward) {
-                        if (listIterator.hasPrevious()) {
-                            listIterator.previous();
+                    try {
+                        if (y < this.citiesList.size() & y > -1) {
+                            System.out.println("Now visiting " + this.citiesList.get(y - 1));
+                            y--;
+                            i--;
+                        } else if (y == -1) {
+                            System.out.println("We are at the start of the list");
                         }
-                        goingForward = false;
-                    }
-                    if (listIterator.hasPrevious()) {
-                        System.out.println("Now visiting " + listIterator.previous());
-                    } else {
-                        System.out.println("We are at the start of the list");
-                        goingForward = true;
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("We are at the start of the list: " + this.citiesList.get(y));
                     }
                     break;
 
@@ -135,7 +109,6 @@ public class PlacesToVisit {
                     break;
             }
         }
-
     }
 
     public void printMenu() {
