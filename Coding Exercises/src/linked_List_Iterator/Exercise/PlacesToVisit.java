@@ -17,7 +17,7 @@ public class PlacesToVisit {
         System.out.println("=========================");
     }
 
-    public boolean addInOrder(LinkedList<String> linkedList, String newCity) {
+    private boolean addInOrder(LinkedList<String> linkedList, String newCity) {
 
         ListIterator<String> stringListIterator = linkedList.listIterator();
 
@@ -62,7 +62,7 @@ public class PlacesToVisit {
 
                 case 1:
                     if (this.citiesList.isEmpty()) {
-                        System.out.println("Reached the end of the list");
+                        System.out.println("\t\t-> Press 5 <-\n To add a destination in list");
                         break;
                     }
                     if (i < this.citiesList.size() & i >= 0) {
@@ -81,7 +81,7 @@ public class PlacesToVisit {
                             y--;
                             i--;
                         } else if (y == -1) {
-                            System.out.println("We are at the start of the list");
+                            System.out.println("\t\t-> Press 5 <-\n To add a destination in list");
                         }
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("We are at the start of the list: " + this.citiesList.get(y));
@@ -90,8 +90,7 @@ public class PlacesToVisit {
 
                 case 3:
                     if (this.citiesList.isEmpty()) {
-                        System.out.println("There are currently no cities to visit");
-                        System.out.println("-> Press 5 \n\t To add a destination");
+                        System.out.println("\t\t-> Press 5 <-\n To add a destination in list");
                     } else {
                         printList();
                     }
@@ -104,15 +103,17 @@ public class PlacesToVisit {
                 case 5:
                     System.out.println("Add a city you want to visit");
                     String newCity = scanner.next();
-                    addInOrder(this.citiesList, newCity);
+
+                    if ( addInOrder(this.citiesList, newCity) ){
                     System.out.println(newCity + " added to the List");
-                    break;
+                }
+                break;
             }
         }
     }
 
     public void printMenu() {
-        System.out.println("Available actions:\npress ");
+        System.out.println("\tAvailable actions:\n\t-> Press 0-5 <- ");
         System.out.println("""
                 0 - to quit
                 1 - go to next city
