@@ -19,7 +19,7 @@ public class Album {
         if (findSong(title) == null) {
             Song song = new Song(title, duration);
             this.playlist.add(song);
-    //        System.out.println("title: <<" + title + ">> duration " + duration + " added in album *" + this.name +"*");
+            System.out.println("title: <<" + title + ">> duration " + duration + " added in album *" + this.name +"*");
             return true;
         } else {
             System.out.println("Is already in the album");
@@ -43,14 +43,12 @@ public class Album {
 
         Song song = findSong(title);
 
-        if (song != null & !playlist.contains(song)) {
+        if (song != null) {
             playlist.add(song);
             System.out.println("<<" + title + ">> in playlist");
             return true;
-        } else {
-            System.out.println("Can't add <<" + title + ">> again");
-            return false;
         }
+            return false;
     }
 
     public boolean addToPlayList(int numberOfSong, LinkedList<Song> playlist) {
