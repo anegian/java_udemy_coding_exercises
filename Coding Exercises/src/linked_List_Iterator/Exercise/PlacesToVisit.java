@@ -47,10 +47,11 @@ public class PlacesToVisit {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         printMenu();
-        int i = 0;
-        int y = -1;
+        int indexI = 0;
+        int indexY = -1;
 
         while (!quit) {
+
             int action = scanner.nextInt();
             scanner.nextLine();
             switch (action) {
@@ -61,30 +62,32 @@ public class PlacesToVisit {
                     break;
 
                 case 1:
+
                     if (this.citiesList.isEmpty()) {
                         System.out.println("\t\t-> Press 5 <-\n To add a destination in list");
                         break;
                     }
-                    if (i < this.citiesList.size() & i >= 0) {
-                        System.out.println("Now visiting " + this.citiesList.get(i));
-                        i++;
-                        y++;
+                    if (indexI < this.citiesList.size() & indexI >= 0) {
+                        System.out.println("Now visiting " + this.citiesList.get(indexI));
+                        indexI++;
+                        indexY++;
                     } else {
-                        System.out.println("Reached the end of the list: " + this.citiesList.get(i - 1));
+                        System.out.println("Reached the end of the list: " + this.citiesList.get(indexI - 1));
                     }
                     break;
 
                 case 2:
+
                     try {
-                        if (y < this.citiesList.size() & y > -1) {
-                            System.out.println("Now visiting " + this.citiesList.get(y - 1));
-                            y--;
-                            i--;
-                        } else if (y == -1) {
+                        if (indexY < this.citiesList.size() & indexY > -1) {
+                            System.out.println("Now visiting " + this.citiesList.get(indexY - 1));
+                            indexY--;
+                            indexI--;
+                        } else if (indexY == -1) {
                             System.out.println("\t\t-> Press 5 <-\n To add a destination in list");
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("We are at the start of the list: " + this.citiesList.get(y));
+                        System.out.println("We are at the start of the list: " + this.citiesList.get(indexY));
                     }
                     break;
 
@@ -122,4 +125,5 @@ public class PlacesToVisit {
                 4 - print menu options
                 5 - add new city""");
     }
+
 }
